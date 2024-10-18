@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from '../images/work-simply-logo-svg.svg'; // Importing the image
+// import Img from '../images/work-simply-logo-svg.svg'; // Importing the image
 const AboutUs = () => {
   return (
     <div className="container my-5">

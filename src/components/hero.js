@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/hero.scss";
 import Img from '../images/43079.jpg'; // Importing the image
 
 const Hero = () => {
-  const [menuActive, setMenuActive] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  // const [menuActive, setMenuActive] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuActive(!menuActive);
-  };
+  // const toggleMenu = () => {
+  //   setMenuActive(!menuActive);
+  // };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // const toggleDarkMode = () => {
+  //   setDarkMode(!darkMode);
+  // };
 
   return (
-    <div className={`hero ${darkMode ? "darkmode" : ""}`}>
+    <div>
 
       <main className="main">
         <section className="section banner banner-section">
