@@ -26,7 +26,7 @@ app.post('/api/send-email', (req, res) => {
     console.log(first_name)
     const mailOptions = {
         from: 'nelsonmaria98@gmail.com', // sender address
-        to: '200601260@student.georgianc.on.ca', // list of receivers
+        to: 'Kagen@work-simply.com', // list of receivers
         subject: 'New Contact Form Submission',
         text: `You have a new message from ${first_name} ${last_name} (${email}): ${message}`
     };
