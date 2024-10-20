@@ -2,35 +2,26 @@ import React, { useRef } from 'react';
 import Img from '../images/Work-Simply Logo Facebook Cover.jpg'; // Importing the image
 
 const Contact = () => {
-  const formRef = useRef(); // Create a ref to reference the form
+  const formRef = useRef(); // Create a ref for the main form
+  const callbackRef = useRef(); // Create a ref for the callback form
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); // Prevent default submission for the contact form
 
-    const formData = new FormData(formRef.current); // Get form data
-    // const data = {
-    //   recipients: ['nelsonmaria98@gmail.com'], // Replace with the actual recipient email(s)
-    //   subject: formData.get('subject'), // Get subject from the form
-    //   text: formData.get('message'), // Get message from the form
-    // };
+    const formData = new FormData(formRef.current); // Get contact form data
     const data = {
       recipients: ['recipient@example.com'], // Replace with the actual recipient email(s)
-      subject: formData.get('subject'), // Get subject from the form
-      message: formData.get('message'), // Get message from the form
-      first_name: formData.get('first_name'), // Get first name from the form
-      last_name: formData.get('last_name'), // Get last name from the form
-      email: formData.get('email'), // Get email from the form
+      subject: formData.get('subject'),
+      text: formData.get('message'),
     };
-    
+
     try {
       const response = await fetch('http://localhost:5000/api/send-email', {
         method: 'POST',
-        secureConnection: false, // TLS requires secureConnection to be false
-        port: 587, // port for secure SMTP
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data), // Send the data as JSON
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
@@ -47,8 +38,38 @@ const Contact = () => {
     }
   };
 
+  const handleCallbackSubmit = async (e) => {
+    e.preventDefault(); // Prevent default submission for the callback form
+
+    const callbackData = {
+      telephone: callbackRef.current.querySelector('input').value, // Get telephone number from input
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/api/request-callback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(callbackData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(result.message); // Success message for callback
+        callbackRef.current.reset(); // Reset the callback form
+      } else {
+        alert('Failed to request callback.'); // Error message
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error requesting callback. Please try again.');
+    }
+  };
+
   return (
-    <div>                         
+    <div>
       <img 
         src={Img}
         alt="Background"
@@ -70,7 +91,7 @@ const Contact = () => {
           <div className="row justify-content-between">
             <div className="col-lg-6">
               <h5 className="fw-semibold mb-3">Send us a message</h5>
-              <form ref={formRef} onSubmit={handleSubmit}> {/* Add ref and onSubmit */}
+              <form ref={formRef} onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="mb-3">
@@ -89,12 +110,12 @@ const Contact = () => {
                   </div>
                   <div className="col-12">
                     <div className="mb-3">
-                      <input className="form-control bg-light" placeholder="Subject" type="text" name="subject" required /> {/* Added Subject */}
+                      <input className="form-control bg-light" placeholder="Subject" type="text" name="subject" required />
                     </div>
                   </div>
                 </div>
                 <div className="mb-3">
-                  <textarea className="form-control bg-light" placeholder="Your message" rows="4" name="message" required></textarea> {/* Added message field */}
+                  <textarea className="form-control bg-light" placeholder="Your message" rows="4" name="message" required></textarea>
                 </div>
                 <div className="col-md-4 ms-auto">
                   <div className="d-grid">
@@ -124,13 +145,14 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      
       <section className="py-5">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
               <h2 className="display-5 fw-bold">Request a Callback</h2>
-              <form className="d-flex pt-4 me-lg-5">
-                <input aria-label="input" className="form-control me-2" placeholder="Telephone Number" type="tel" />
+              <form ref={callbackRef} onSubmit={handleCallbackSubmit} className="d-flex pt-4 me-lg-5">
+                <input aria-label="input" className="form-control me-2" placeholder="Telephone Number" type="tel" required />
                 <button className="btn text-nowrap" type="submit" style={{
                   backgroundColor: "#59B4C3",
                   color: 'white',

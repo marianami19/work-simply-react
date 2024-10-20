@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 // POST endpoint to send email
 app.post('/api/send-email', (req, res) => {
     const { first_name, last_name, email, message } = req.body;
-    console.log(first_name)
+    
     const mailOptions = {
         from: 'nelsonmaria98@gmail.com', // sender address
         to: 'Kagen@work-simply.com', // list of receivers
@@ -40,6 +40,36 @@ app.post('/api/send-email', (req, res) => {
         res.status(200).send('Email sent successfully');
     });
 });
+
+
+
+app.post('/api/request-callback', (req, res) => {
+    const { telephone } = req.body;
+
+    const mailOptions = {
+        from: 'nelsonmaria98@gmail.com', // sender address
+        to: 'Kagen@work-simply.com', // list of receivers
+        subject: 'New Contact Form Submission',
+        text: `You have a callback request from ${telephone}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('Error sending email');
+        }
+        console.log('Email sent: ' + info.response);
+        res.status(200).send('Email sent successfully');
+    });
+    // Here you would handle the callback request (e.g., save to database or send an email)
+    console.log('Request for callback received:', telephone);
+
+    // Send a response
+    res.json({ message: 'Callback request received successfully' });
+});
+
+
+
 
 // Start the server
 app.listen(PORT, () => {
