@@ -34,7 +34,7 @@ export default function Footer() {
             <h5 className="text-uppercase mb-3">Contact Us</h5>
             <p> info@work-simply.com</p>
             <p> +1 (123) 456-7890</p>
-            <div>
+            {/* <div>
               <a  className="me-4 text-dark">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -44,7 +44,7 @@ export default function Footer() {
               <a  className="me-4 text-dark">
                 <i className="fab fa-linkedin"></i>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
