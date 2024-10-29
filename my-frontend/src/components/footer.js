@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -16,16 +17,16 @@ export default function Footer() {
             <h5 className="text-uppercase mb-3">Links</h5>
             <ul className="list-unstyled">
               <li className='mb-3'>
-                <a href="/" className="text-dark text-decoration-none">Home</a>
+                {/* <a href="/" className="text-dark text-decoration-none">Home</a> */}
+                <Link className="text-dark text-decoration-none"  to="/">Home</Link>
               </li>
               <li className='mb-3'>
-                <a href="/about" className="text-dark text-decoration-none">About</a>
+                {/* <a href="/about" className="text-dark text-decoration-none">About</a> */}
+                <Link className="text-dark text-decoration-none" to="/about" >About</Link>
               </li>
               <li className='mb-3'>
-                <a href="/services" className="text-dark text-decoration-none">Services</a>
-              </li>
-              <li className='mb-3'>
-                <a href="/contact" className="text-dark text-decoration-none">Contact</a>
+                {/* <a href="/contact" className="text-dark text-decoration-none">Contact</a> */}
+                <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>
               </li>
             </ul>
           </div>
