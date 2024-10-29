@@ -35,13 +35,13 @@ export default function Footer() {
             <p> info@work-simply.com</p>
             <p> +1 (123) 456-7890</p>
             <div>
-              <a href="#" className="me-4 text-dark">
+              <a  className="me-4 text-dark">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="me-4 text-dark">
+              <a  className="me-4 text-dark">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#" className="me-4 text-dark">
+              <a  className="me-4 text-dark">
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
